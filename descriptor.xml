@@ -1,0 +1,15 @@
+<app>
+  <id>start-cooking</id>
+  <name>Start Cooking</name>
+  <version>1.0</version>
+  <description>Kathy Maister's StartCooking.com. </description>
+  <thumb>https://sites.google.com/site/fatrabbitcode/boxee/start-cooking-thumb.png</thumb>
+  <repository>http://dir.boxee.tv/apps</repository>
+  <media>video</media>
+  <copyright>Mel Ludowise</copyright>
+  <email>mludowise@gmail.com</email>
+  <type>skin</type>
+  <startWindow>14000</startWindow>
+  <platform>all</platform>
+  <minversion>0.9.11</minversion>
+</app>

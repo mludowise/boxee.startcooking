@@ -1,0 +1,149 @@
+<?xml version="1.0"?>
+<window type="window" id="14001">
+    <defaultcontrol always="true">200</defaultcontrol>
+    <allowoverlay>no</allowoverlay>
+    <onload  lang="python"><![CDATA[
+import util
+params = mc.GetApp().GetLaunchedWindowParameters()
+title = params['title']
+path = params['path']
+icon = params['icon']
+ingredients = params['ingredients']
+instructions = params['instructions']
+serving = params['serving']
+#item = params['item']
+#title = item.GetProperty("title")
+
+mc.GetWindow(14001).GetLabel(10).SetLabel(title)
+mc.GetWindow(14001).GetLabel(20).SetLabel(serving)
+mc.GetWindow(14001).GetLabel(200).SetLabel(instructions)
+
+items = util.load_ingredients(ingredients)
+mc.GetWindow(14001).GetList(100).SetItems(items)
+mc.HideDialogWait()
+mc.GetWindow(14001).GetControl(100).SetFocus()
+]]></onload>
+    <allowoverlay>no</allowoverlay>
+    <controls>
+        <control type="group">
+            <control type="group">
+                <visible>true</visible>
+                <control type="image">
+                    <posx>0</posx>
+                    <posy>0</posy>
+                    <width>1280</width>
+                    <height>720</height>
+                    <texture>main.png</texture>
+                </control>
+            </control>
+            <control type="group">
+                <posx>80</posx>
+                <posy>120</posy>
+                <control type="label" id="10">
+                    <posx>0</posx>
+                    <posy>0</posy>
+                    <width>595</width>
+                    <height>26</height>
+                    <font>font22b</font>
+                    <align>left</align>
+                    <aligny>top</aligny>
+                    <textcolor>black</textcolor>
+                </control>
+                <control type="label" id="20">
+                    <posx>0</posx>
+                    <posy>25</posy>
+                    <width>100</width>
+                    <height>19</height>
+                    <font>font16i</font>
+                    <align>left</align>
+                    <aligny>top</aligny>
+                    <textcolor>black</textcolor>
+                </control>
+            </control>
+            <control type="image" id="30">
+                <posx>80</posx>
+                <posy>170</posy>
+                <width>480</width>
+                <height>335</height>
+                <texture>black.png</texture>
+            </control>
+            <control type="videowindow" id="40">
+                <posx>80</posx>
+                <posy>170</posy>
+                <width>480</width>
+                <height>335</height>
+            </control>
+            <control type="list" id="100">
+                <posx>80</posx>
+                <posy>515</posy>
+                <width>480</width>
+                <height>155</height>
+                <scrolltime>200</scrolltime>
+                <pagecontrol>-</pagecontrol>
+                <orientation>vertical</orientation>
+                <onright>200</onright>
+                <onleft>-</onleft>
+                <itemlayout width="595" height="22">
+                    <control type="label">
+                        <posx>5</posx>
+                        <posy>0</posy>
+                        <width>585</width>
+                        <height>22</height>
+                        <font>font18</font>
+                        <align>left</align>
+                        <aligny>top</aligny>
+                        <label>• $INFO[ListItem.Label]</label>
+                        <textcolor>black</textcolor>
+                    </control>
+                </itemlayout>
+                <focusedlayout width="595" height="22">
+                    <control type="image">
+                        <posx>0</posx>
+                        <posy>0</posy>
+                        <width>595</width>
+                        <height>22</height>
+                        <texture>white.png</texture>
+                        <colordiffuse>FFB1D05B</colordiffuse>
+                    </control>
+                    <control type="label">
+                        <posx>5</posx>
+                        <posy>0</posy>
+                        <width>585</width>
+                        <height>22</height>
+                        <font>font18</font>
+                        <align>left</align>
+                        <aligny>top</aligny>
+                        <label>• $INFO[ListItem.Label]</label>
+                        <textcolor>black</textcolor>
+                    </control>
+                </focusedlayout>
+                <control type="scrollbar" id="60">
+                    <description>scroll bar indicator for lists</description>
+                    <visible>Control.IsVisible(100)</visible>
+                    <posx>560</posx>
+                    <posy>162</posy>
+                    <width>8</width>
+                    <height>120</height>
+                    <texturesliderbackground border="4">scrollbar_vertical_bg.png</texturesliderbackground>
+                    <texturesliderbar border="4">scrollbar_vertical_nib.png</texturesliderbar>
+                    <texturesliderbarfocus border="4">scrollbar_vertical_nib.png</texturesliderbarfocus>
+                    <orientation>vertical</orientation>
+                    <showonepage>false</showonepage>
+                </control>
+            </control>
+            <control type="label" id="200">
+                <posx>675</posx>
+                <posy>120</posy>
+                <width>505</width>
+                <height>540</height>
+                <font>font18</font>
+                <textcolor>black</textcolor>
+                <pagecontrol>60</pagecontrol>
+                <autoscroll delay="3000" time="1000" repeat="10000">!Control.HasFocus(200)</autoscroll>
+                <onright>-</onright>
+                <onleft>100</onleft>
+                <wrapmultiline>true</wrapmultiline>
+            </control>
+        </control>
+    </controls>
+</window>

@@ -1,0 +1,180 @@
+<?xml version="1.0"?>
+<window type="window" id="14000">
+<onload lang="python"><![CDATA[
+import util
+items = util.get_videos("http://feeds.feedburner.com/KathyMaistersStartCookingVideoCast?format=xml")
+mc.GetWindow(14000).GetList(100).SetItems(items)
+mc.HideDialogWait()
+mc.GetWindow(14000).GetControl(100).SetFocus()
+]]></onload>
+	<defaultcontrol always="true">100</defaultcontrol>
+	<allowoverlay>no</allowoverlay>
+	<controls>
+		<control type="group">
+			<control type="group">
+				<visible>true</visible>
+				<control type="image">
+					<posx>0</posx>
+					<posy>0</posy>
+					<width>1280</width>
+					<height>720</height>
+					<texture>main.png</texture>
+				</control>
+				<control type="panel" id="100">
+					<posx>55</posx>
+					<posy>120</posy>
+					<width>1190</width>
+					<height>540</height>
+					<scrolltime>200</scrolltime>
+					<pagecontrol>-</pagecontrol>
+					<orientation>vertical</orientation>
+					<itemlayout width="595" height="85">
+						<control type="image">
+							<posx>25</posx>
+							<posy>5</posy>
+							<width>100</width>
+							<height>75</height>
+							<info>ListItem.Icon</info>
+							<aspectratio>maintain</aspectratio>
+						</control>
+						<control type="label">
+							<posx>135</posx>
+							<posy>5</posy>
+							<width>395</width>
+							<height>26</height>
+							<font>font22b</font>
+							<align>left</align>
+							<aligny>top</aligny>
+							<label>$INFO[ListItem.Label]</label>
+							<textcolor>black</textcolor>
+						</control>
+						<control type="label">
+							<posx>135</posx>
+							<posy>35</posy>
+							<width>395</width>
+							<height>19</height>
+							<font>font16</font>
+							<align>left</align>
+							<aligny>top</aligny>
+							<label>$INFO[ListItem.property(custom:description)]</label>
+							<textcolor>black</textcolor>
+						</control>
+						<control type="label">
+							<posx>135</posx>
+							<posy>60</posy>
+							<width>100</width>
+							<height>19</height>
+							<font>font16i</font>
+							<align>left</align>
+							<aligny>top</aligny>
+							<label>$INFO[ListItem.property(custom:serving)]</label>
+							<textcolor>black</textcolor>
+						</control>
+						<control type="label">
+							<posx>530</posx>
+							<posy>60</posy>
+							<width>75</width>
+							<height>19</height>
+							<font>font16</font>
+							<align>right</align>
+							<aligny>top</aligny>
+							<label>$INFO[ListItem.property(custom:duration)]</label>
+							<textcolor>black</textcolor>
+						</control>
+					</itemlayout>
+					<focusedlayout width="595" height="85">
+						<control type="image">
+							<visible>Control.HasFocus(100)</visible>
+							<posx>20</posx>
+							<posy>0</posy>
+							<width>530</width>
+							<height>85</height>
+							<colordiffuse>FFB1D05B</colordiffuse>
+							<texture>list_frame_device_white.png</texture>
+							<animation type="Focus">
+								<effect type="fade" start="60" time="120"/>
+								<effect type="zoom" start="99,97" center="auto" time="120" delay="60"/>
+							</animation>
+						</control>
+						<control type="image">
+							<posx>25</posx>
+							<posy>5</posy>
+							<width>100</width>
+							<height>75</height>
+							<info>ListItem.Icon</info>
+							<aspectratio>maintain</aspectratio>
+						</control>
+						<control type="label">
+							<posx>135</posx>
+							<posy>5</posy>
+							<width>395</width>
+							<height>26</height>
+							<font>font22b</font>
+							<align>left</align>
+							<aligny>top</aligny>
+							<label>$INFO[ListItem.Label]</label>
+							<textcolor>white</textcolor>
+							<scroll>true</scroll>
+							<scrollspeed>30</scrollspeed>
+						</control>
+						<control type="label">
+							<posx>135</posx>
+							<posy>35</posy>
+							<width>395</width>
+							<height>19</height>
+							<font>font16</font>
+							<align>left</align>
+							<aligny>top</aligny>
+							<label>$INFO[ListItem.property(custom:description)]</label>
+							<textcolor>white</textcolor>
+							<scroll>true</scroll>
+							<scrollspeed>30</scrollspeed>
+						</control>
+						<control type="label">
+							<posx>135</posx>
+							<posy>60</posy>
+							<width>395</width>
+							<height>19</height>
+							<font>font16i</font>
+							<align>left</align>
+							<aligny>top</aligny>
+							<label>$INFO[ListItem.property(custom:serving)]</label>
+							<textcolor>white</textcolor>
+						</control>
+						<control type="label">
+							<posx>530</posx>
+							<posy>60</posy>
+							<width>75</width>
+							<height>19</height>
+							<font>font16</font>
+							<align>right</align>
+							<aligny>top</aligny>
+							<label>$INFO[ListItem.property(custom:duration)]</label>
+							<textcolor>white</textcolor>
+						</control>
+					</focusedlayout>
+					<content type="action">
+						<onclick lang="python">
+							<![CDATA[
+n = mc.GetWindow(14000).GetList(100).GetFocusedItem()
+item = mc.GetWindow(14000).GetList(100).GetItem(n)
+params = mc.Parameters()
+params['title'] = item.GetLabel()
+params['path'] = item.GetPath()
+params['icon'] = item.GetIcon()
+params['ingredients'] = item.GetProperty("ingredients")
+params['instructions'] = item.GetProperty("instructions")
+params['serving'] = item.GetProperty("serving")
+#params['item'] = item
+							
+mc.GetApp().ActivateWindow(14001, params)
+#mc.ShowDialogNotification('You pressed a button!')
+mc.Player().PlayInBackground(item)
+]]>
+						</onclick>
+					</content>
+				</control>
+			</control>
+		</control>
+	</controls>
+</window>
