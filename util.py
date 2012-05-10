@@ -71,8 +71,9 @@ def load_ingredients(ingredientsHTML):
 	
 	items = mc.ListItems()
 	for ingredient in ingredients:
-		if ingredient.find("<li>") >= 0:
-			ingredient = ingredient[ingredient.find("<li>") + 4 : len(ingredient)]
+		if ingredient.find("<li") >= 0:
+			ingredient = ingredient[ingredient.find("<li") + 3 : len(ingredient)]
+			ingredient = ingredient[ingredient.find(">") + 1 : len(ingredient)]
 			item = mc.ListItem(mc.ListItem.MEDIA_UNKNOWN)
 			item.SetLabel(clean_html_entities(ingredient))
 			items.append(item)
