@@ -1,32 +1,15 @@
 import mc
 import urllib2
 import re
+import effbot
 
+print effbot.strip_html("<strong>&#8220;foo&#39;</strong><br/>bar&amp;").encode('ascii', 'replace')
+
+# Removes HTML tags and replaces escaped HTML characters
 def clean_html_entities( text ):
-	""" Convert html entities """
-	try:
-		text = text.replace( "&#8217;", "'" )
-		text = text.replace( "&#8220;", "\"" )
-		text = text.replace( "&#8221;", "\"" )
-		text = text.replace( "&#160;", "" )
-		text = text.replace( "&amp;", "&" )
-		text = text.replace( "&gt;", ">" )
-		text = text.replace( "&lt;", "<" )
-		text = text.replace( "&quot;", '"' )
-		text = text.replace( "&iacute;", 'i' )
-		text = text.replace( "&#39;","'" )
-		text = text.replace( "&rsquo;","’" )
-		text = text.replace( "&nbsp;", ' ' )
-		text = text.replace( "<br />","\n" )
-		text = text.replace( "<br/>","\n" )
-		text = text.replace( "<br>","\n" )
-		text = text.replace( "<strong>","" )
-		text = text.replace( "</strong>","" )
-		text = text.replace( "<b>","" )
-		text = text.replace( "</b>","" )
-	except: 
-		pass
-	return text
+	text = re.sub("<br.*?>", "\n", text)
+	text = effbot.strip_html(text)
+	return text.encode('UTF-8', 'replace')
 
 def get_contents(xml, tag):
 	if xml.find("<" + tag + ">") > 0:
