@@ -11,6 +11,9 @@ def clean_html_entities( text ):
 	text = effbot.strip_html(text)
 	return text.encode('UTF-8', 'replace')
 
+def escape_commas_for_textbox( text ):
+	return re.sub(",", "$COMMA", text)
+
 def get_contents(xml, tag):
 	if xml.find("<" + tag + ">") > 0:
 		tempXML = xml[xml.find("<" + tag + ">") + len(tag) + 2: len(xml)]
