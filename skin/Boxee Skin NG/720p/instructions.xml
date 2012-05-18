@@ -39,7 +39,7 @@ mc.GetWindow(14001).GetControl(100).SetFocus()
 			</control>
 			<control type="group">
 				<posx>80</posx>
-				<posy>120</posy>
+				<posy>130</posy>
 				<control type="label" id="10">
 					<posx>0</posx>
 					<posy>0</posy>
@@ -63,20 +63,20 @@ mc.GetWindow(14001).GetControl(100).SetFocus()
 			</control>
 			<control type="image" id="30">
 				<posx>80</posx>
-				<posy>170</posy>
+				<posy>180</posy>
 				<width>480</width>
 				<height>335</height>
 				<texture>black.png</texture>
 			</control>
 			<control type="videowindow" id="40">
 				<posx>80</posx>
-				<posy>170</posy>
+				<posy>180</posy>
 				<width>480</width>
 				<height>335</height>
 			</control>
 			<control type="list" id="100">
 				<posx>80</posx>
-				<posy>515</posy>
+				<posy>525</posy>
 				<width>480</width>
 				<height>155</height>
 				<scrolltime>200</scrolltime>
@@ -122,9 +122,9 @@ mc.GetWindow(14001).GetControl(100).SetFocus()
 					</control>
 				</focusedlayout>
 			</control>
-				<control type="scrollbar" id="101">
+			<control type="scrollbar" id="101">
 				<posx>565</posx>
-				<posy>515</posy>
+				<posy>525</posy>
 				<width>4</width>
 				<height>155</height>
 				<onright>201</onright>
@@ -144,9 +144,6 @@ mc.GetWindow(14001).GetControl(100).SetFocus()
 				<height>540</height>
 				<font>font18</font>
 				<textcolor>black</textcolor>
-				<!--autoscroll delay="3000" time="1000" repeat="10000">!Control.HasFocus(200)</autoscroll-->
-				<!--onright>-</onright-->
-				<!--onleft>100</onleft-->
 				<pagecontrol>201</pagecontrol>
 				<wrapmultiline>true</wrapmultiline>
 			</control>

@@ -22,11 +22,15 @@ mc.GetWindow(14000).GetControl(100).SetFocus()
 				</control>
 				<control type="panel" id="100">
 					<posx>55</posx>
-					<posy>120</posy>
+					<posy>130</posy>
 					<width>1190</width>
 					<height>540</height>
+					<onleft>-</onleft>
+					<onright>-</onright>
+					<onup>-</onup>
+					<ondown>-</ondown>
 					<scrolltime>200</scrolltime>
-					<pagecontrol>-</pagecontrol>
+					<pagecontrol>101</pagecontrol>
 					<orientation>vertical</orientation>
 					<itemlayout width="595" height="85">
 						<control type="image">
@@ -173,6 +177,24 @@ mc.Player().PlayInBackground(item)
 ]]>
 						</onclick>
 					</content>
+				</control>
+				<control type="scrollbar" id="101">
+					<visible>Control.IsVisible(100)</visible>
+					<posx>1205</posx>
+					<posy>130</posy>
+					<width>4</width>
+					<height>540</height>
+					<texturesliderbackground>-</texturesliderbackground>
+					<textureslidernib>-</textureslidernib>
+					<textureslidernibfocus>-</textureslidernibfocus>
+					<texturesliderbar>C0666666.png</texturesliderbar>
+					<texturesliderbarfocus>FFB1D05B.png</texturesliderbarfocus>
+					<orientation>vertical</orientation>
+					<showonepage>false</showonepage>
+					<onleft>100</onleft>
+					<onright>-</onright>
+					<onup>-</onup>
+					<ondown>-</ondown>
 				</control>
 			</control>
 		</control>
